@@ -28,6 +28,9 @@ public class HttpAgentController {
             para.setParams(param);
            para.setMethod("POST");
             para.setCharset(charset);
+        } else {
+            para.setMethod("GET");
+            para.setCharset(charset);
         }
 
         return  api.exec(para);
