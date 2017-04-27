@@ -5,7 +5,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -201,15 +200,15 @@ public class HttpClientApi  {
             try {
                 int status = response.getStatusLine().getStatusCode();
                 HttpEntity entity = response.getEntity();
-                if (status >= 200 && status < 300) {
+                //if (status >= 200 && status < 300) {
                     if (StringUtils.isNotBlank(charset)) {
                         return entity != null ? EntityUtils.toString(entity, charset) : null;
                     } else {
                         return entity != null ? EntityUtils.toString(entity) : null;
                     }
-                } else {
-                    throw new ClientProtocolException("Unexpected response status: " + status + " " + EntityUtils.toString(entity));
-                }
+//                } else {
+//                    throw new ClientProtocolException("Unexpected response status: " + status + " " + EntityUtils.toString(entity));
+//                }
             } finally {
                 response.close();
             }
@@ -235,16 +234,16 @@ public class HttpClientApi  {
             httpResponse = client.execute(method);
 
             // 请求发送成功，并得到响应
-            if (httpResponse.getStatusLine().getStatusCode() == 200) {
+            //if (httpResponse.getStatusLine().getStatusCode() == 200) {
                 try {
                     // 读取服务器返回过来的字符串数据
                     result = EntityUtils.toString(httpResponse.getEntity(), charset);
                 } catch (Exception e) {
                     LOG.error("读取httpApi返回字符串数据失败:" + url, e);
                 }
-            } else {
-                LOG.error("httpApi接口返回响应失败：response=" + httpResponse.getStatusLine());
-            }
+            // } else {
+            //    LOG.error("httpApi接口返回响应失败：response=" + httpResponse.getStatusLine());
+            // }
         } catch (IOException e) {
             LOG.error("httpApi：" + e.getMessage() + "[" + url + "]");
             throw new RuntimeException(e);
@@ -286,15 +285,15 @@ public class HttpClientApi  {
             try {
                 int status = response.getStatusLine().getStatusCode();
                 HttpEntity entity = response.getEntity();
-                if (status >= 200 && status < 300) {
+                //if (status >= 200 && status < 300) {
                     if (StringUtils.isNotBlank(charset)) {
                         return entity != null ? EntityUtils.toString(entity, charset) : null;
                     } else {
                         return entity != null ? EntityUtils.toString(entity) : null;
                     }
-                } else {
-                    throw new ClientProtocolException("Unexpected response status: " + status + " " + EntityUtils.toString(entity));
-                }
+                // } else {
+                //    throw new ClientProtocolException("Unexpected response status: " + status + " " + EntityUtils.toString(entity));
+                // }
             } finally {
                 response.close();
             }

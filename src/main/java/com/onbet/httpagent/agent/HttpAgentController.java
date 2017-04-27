@@ -2,7 +2,6 @@ package com.onbet.httpagent.agent;
 
 import com.onbet.httpagent.utils.HttpClientApi;
 import com.onbet.httpagent.utils.HttpParam;
-import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +24,7 @@ public class HttpAgentController {
             charset="utf-8";
         }
         HttpParam para=new HttpParam(url);
-        if(param!=null){
+        if (param != null && param.size() > 0) {
             para.setParams(param);
            para.setMethod("POST");
             para.setCharset(charset);
