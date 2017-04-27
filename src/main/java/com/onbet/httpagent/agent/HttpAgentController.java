@@ -29,6 +29,7 @@ public class HttpAgentController {
         if(StringUtils.isEmpty(charset)){
             charset="utf-8";
         }
+        System.out.println(url);
         HttpParam para=new HttpParam(url);
         if (param != null && param.size() > 0) {
             para.setParams(param);
